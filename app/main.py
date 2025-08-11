@@ -94,9 +94,11 @@ async def save_api(report: str = Form(...), transcription: str | None = Form(def
     return {"status": str(status)}
 
 
+from fastapi.responses import RedirectResponse
+
 @app.get("/")
-async def root():
-    return {"ok": True, "service": "news-reporter", "version": "1.0"}
+def root():
+    return RedirectResponse(url="/ui", status_code=307)
 
 
 
