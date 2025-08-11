@@ -1,0 +1,19 @@
+[project]
+name = "hackation-entry"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "boto3>=1.34",
+    "fastapi>=0.112",
+    "gradio>=5.42.0",
+    "langchain-core>=0.2,<0.3",
+    "langchain-openai>=0.1.23",
+    "openai>=1.40",
+    "psycopg[binary]>=3.2",
+    "python-dotenv>=1.0",
+    "python-multipart>=0.0.20",
+    "sqlalchemy>=2.0",
+    "uvicorn[standard]>=0.30",
+]
