@@ -1,9 +1,22 @@
 from typing import Dict
-from langchain_openai import ChatOpenAI
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 from ..config import settings
 
-llm = ChatOpenAI(model="gpt-4o", temperature=0, openai_api_key=settings.openai_api_key)
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+# from langchain_openai import ChatOpenAI
+# llm = ChatOpenAI(model="gpt-4o", temperature=0, openai_api_key=settings.openai_api_key)
+
+# Change model
+from langchain_community.chat_models import ChatDeepInfra
+llm = ChatDeepInfra(
+    model=os.getenv('GEN_MODEL'),
+    temperature=0,
+    max_tokens=1024,
+    deepinfra_api_key=os.getenv('DEEPINFRA_API_KEY'))
+
 
 
 def generate_report(state: Dict) -> Dict:
