@@ -3,6 +3,7 @@ from openai import OpenAI
 from ..config import settings
 
 
+# FOR OPENAI ####
 def transcribe_fast(state: Dict) -> Dict:
     audio_path = state.get("audio_path")
     if not audio_path:
@@ -16,3 +17,34 @@ def transcribe_fast(state: Dict) -> Dict:
     except Exception as e:
         state["transcribed_text"] = f"Error during transcription: {e}"
     return state
+
+# ## FOR DEEPINFRA ####
+# def transcribe_fast(state: Dict) -> Dict:
+#     """
+#     Transcribes an audio file using a Whisper model hosted on DeepInfra.
+#     """
+#     audio_path = state.get("audio_path")
+#     if not audio_path:
+#         state["transcribed_text"] = None
+#         return state
+
+#     # Configure the client to use DeepInfra's API
+#     client = OpenAI(
+#         api_key=settings.deepinfra_api_key,  # <-- Use your DeepInfra API key
+#         base_url='https://api.deepinfra.com/v1/inference/openai/whisper-large-v3' # <-- Point to DeepInfra's endpoint
+#     )
+
+#     try:
+#         with open(audio_path, "rb") as audio_file:
+#             # Transcribe using a model available on DeepInfra
+#             transcription = client.audio.transcriptions.create(
+#                 model="openai/whisper-large-v3", # <-- Specify a DeepInfra model
+#                 file=audio_file,
+#                 response_format="text"
+#             )
+#         # DeepInfra returns the text directly in the response body
+#         state["transcribed_text"] = transcription.strip()
+#     except Exception as e:
+#         state["transcribed_text"] = f"Error during transcription: {e}"
+
+#     return state
