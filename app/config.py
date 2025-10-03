@@ -14,6 +14,7 @@ def _normalize_db(url: str) -> str:
 @dataclass
 class Settings:
     openai_api_key: str = os.getenv("OPENAI_API_KEY", "")
+    deepinfra_api_key: str = os.getenv("DEEPINFRA_API_KEY", "")
     database_url: str = _normalize_db(os.getenv("DATABASE_URL", "sqlite:///./news_reports.db"))
     s3_bucket: str = os.getenv("S3_BUCKET", "")
     s3_prefix: str = os.getenv("S3_PREFIX", "reports/")
