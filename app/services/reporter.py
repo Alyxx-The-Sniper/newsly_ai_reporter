@@ -6,16 +6,16 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-from langchain_openai import ChatOpenAI
-llm = ChatOpenAI(model="gpt-4o", temperature=0, openai_api_key=settings.openai_api_key)
+# from langchain_openai import ChatOpenAI
+# llm = ChatOpenAI(model="gpt-4o", temperature=0, openai_api_key=settings.openai_api_key)
 
-# # Change model
-# from langchain_community.chat_models import ChatDeepInfra
-# llm = ChatDeepInfra(
-#     model=os.getenv('GEN_MODEL'),
-#     temperature=0,
-#     max_tokens=1024,
-#     deepinfra_api_key=os.getenv('DEEPINFRA_API_KEY'))
+# Change model
+from langchain_community.chat_models import ChatDeepInfra
+llm = ChatDeepInfra(
+    model=os.getenv('GEN_MODEL'),
+    temperature=0,
+    max_tokens=1024,
+    deepinfra_api_key=os.getenv('DEEPINFRA_API_KEY'))
 
 
 
