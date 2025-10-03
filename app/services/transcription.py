@@ -30,19 +30,18 @@ def transcribe_fast(state: Dict) -> Dict:
 
     # Configure the client to use DeepInfra's API
     client = OpenAI(
-        api_key=settings.deepinfra_api_key,  # <-- Use your DeepInfra API key
-        base_url='https://api.deepinfra.com/v1/inference/openai/whisper-large-v3' # <-- Point to DeepInfra's endpoint
+        api_key=settings.deepinfra_api_key,
+        base_url="https://api.deepinfra.com/v1/openai" # <-- CORRECTED ENDPOINT
     )
 
     try:
         with open(audio_path, "rb") as audio_file:
-            # Transcribe using a model available on DeepInfra
+            # The model is correctly specified here
             transcription = client.audio.transcriptions.create(
-                model="openai/whisper-large-v3", # <-- Specify a DeepInfra model
+                model="openai/whisper-large-v3",
                 file=audio_file,
                 response_format="text"
             )
-        # DeepInfra returns the text directly in the response body
         state["transcribed_text"] = transcription.strip()
     except Exception as e:
         state["transcribed_text"] = f"Error during transcription: {e}"
