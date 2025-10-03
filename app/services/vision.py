@@ -9,6 +9,7 @@ from ..config import settings
 
 ## FOR DEEPINFRA
 from langchain_community.chat_models import ChatDeepInfra
+import os
 vision_llm = ChatDeepInfra(
             model=os.getenv('GEN_MODEL'),
             temperature=0,
