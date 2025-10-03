@@ -50,7 +50,7 @@ def save_report_ui(current_state: Dict):
 
 
 def build_ui():
-    with gr.Blocks(theme=gr.themes.Soft(), title="News Reporter (Note: I dont have OPENAI Credit As of Now, 😞)") as demo:
+    with gr.Blocks(theme=gr.themes.Soft(), title="News Reporter (Note: I dont have OPENAI Credit As of Now 😞)") as demo:
         agent_state = gr.State(value=None)
 
         gr.Markdown("# 🤖 News Reporter (Gradio)")
